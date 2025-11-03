@@ -30,7 +30,7 @@ function entrar() {
                 }
             })
             if (logado == true) {
-                window.location.href = "./pi.html";
+                window.location.href = "https://inventariodescarte.netlify.app/pi.html";
                 let token = Math.random().toString(32).substr(2) + Math.random().toString(32).substr(2) + Math.random().toString(32).substr(2);
                 localStorage.setItem('token', token);
                 localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
