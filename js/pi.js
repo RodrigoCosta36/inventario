@@ -35,8 +35,8 @@ limpar.addEventListener('click', function () {
     var r = confirm("Clique em OK para limpar todos os campos!");
     if (r == true) {
         contador.innerHTML = contagem = 0;
-        referencia.innerHTML = contagem = "";
-        descricao.innerHTML = contagem = "";
+        referencia.innerHTML = "";
+        descricao.innerHTML = "";
         localiza.innerHTML = "";
         codigoBarra.value = "";
         codigos.value = "";
@@ -61,6 +61,7 @@ function retorno() {
     })
     document.getElementById('codBarraPrimary').focus();
 };
+
 function enter() {
     document.getElementById('codBarraPrimary').focus();
 };
@@ -68,20 +69,27 @@ function enter() {
 class Produto {
 
     constructor() {
-       this.id = codBarraPrimary.value; 
-       this.arrayProdutos = [];
+        this.arrayProdutos = [];
+        this.editando = false;
+        this.indexEditar = null;
     }
 
     salvar() {
         let produtos = this.lerDados();
 
         if (this.validaCampos(produtos)) {
-            this.adicionar(produtos);
+
+            if (this.editando == true) {
+                this.arrayProdutos[this.indexEditar] = produtos;
+                this.editando = false;
+                this.indexEditar = null;
+            } else {
+                this.arrayProdutos.push(produtos);
+            }
         };
 
         this.listaTabela();
         codigoBarra.value = "";
-
         document.getElementById('codBarraPrimary').focus();
     };
 
@@ -89,84 +97,60 @@ class Produto {
         let tbody = document.getElementById('tbody');
         tbody.innerHTML = '';
 
-        //for (let i = 0; i < this.arrayProdutos.length; i++) {
         for (let i = this.arrayProdutos.length - 1; i >= 0; i--) {
+
             let tr = tbody.insertRow();
 
-            let td_id = tr.insertCell();
-            let td_sku = tr.insertCell();
-            let td_qtde = tr.insertCell();
-            let td_descricao = tr.insertCell();
-            let td_localiza = tr.insertCell();
-            let td_conferente = tr.insertCell();
+            tr.insertCell().innerHTML = this.arrayProdutos[i].id;
+            tr.insertCell().innerHTML = this.arrayProdutos[i].referencia;
+            tr.insertCell().innerHTML = 1;
+            tr.insertCell().innerHTML = this.arrayProdutos[i].descricao;
+            tr.insertCell().innerHTML = this.arrayProdutos[i].localiza;
+            tr.insertCell().innerHTML = `${usuarios}`;
 
-            td_id.innerHTML = this.arrayProdutos[i].id;
-            td_sku.innerHTML = this.arrayProdutos[i].referencia;
-            td_qtde.innerHTML = 1;
-            td_descricao.innerHTML = this.arrayProdutos[i].descricao;
-            td_localiza.innerHTML = this.arrayProdutos[i].localiza;
-            td_conferente.innerHTML = `${usuarios}`;
-
-            td_id.classList.add('center');
-            td_sku.classList.add('center');
-            td_qtde.classList.add('center');
-            td_localiza.classList.add('center');
-            td_conferente.classList.add('center');
+            let td_acoes = tr.insertCell();
+            td_acoes.innerHTML = `
+                <button onclick="produtos.editar(${i})">✏️</button>
+                <button onclick="produtos.deletar(${i})">🗑️</button>
+            `;
+            td_acoes.classList.add('center');
         }
-
-
     };
 
-    adicionar(produtos) {
-        this.arrayProdutos.push(produtos);
-        this.id++;
-    };
+    editar(indice) {
+        this.editando = true;
+        this.indexEditar = indice;
 
-    editar(dados) {
-       document.getElementById('codBarraPrimary').value = dados.id;
-        referencia.innerHTML = dados.referencia;
-        descricao.innerHTML = dados.descricao;
-        contador.innerHTML = dados.contador;
+        document.getElementById('codBarraPrimary').value = this.arrayProdutos[indice].id;
+        referencia.innerHTML = this.arrayProdutos[indice].referencia;
+        descricao.innerHTML = this.arrayProdutos[indice].descricao;
+        localiza.innerHTML = this.arrayProdutos[indice].localiza;
+
+        document.getElementById('codBarraPrimary').focus();
     }
 
     lerDados() {
-        let produtos = {}
-
-       produtos.id = document.getElementById('codBarraPrimary').value;
-        produtos.referencia = referencia.innerHTML;
-        produtos.contador = contador.innerHTML;
-        produtos.descricao = descricao.innerHTML;
-        produtos.localiza = localiza.innerHTML;
-
-
-        return produtos;
+        return {
+            id: document.getElementById('codBarraPrimary').value,
+            referencia: referencia.innerHTML,
+            descricao: descricao.innerHTML,
+            localiza: localiza.innerHTML
+        };
     };
 
     validaCampos(produtos) {
-        let msg = '';
-
         if (produtos.referencia == '' && produtos.descricao == '') {
-            msg += 'Campo não pode ser vazio \n';
-        }
-        if (msg != '') {
-            alert(msg);
-            return false
+            alert('Campo não pode ser vazio \n');
+            return false;
         }
         return true;
     };
 
-    deletar(id) {
-        if (confirm(`Excluir o Baú Nº ${id} ?`)) {
-            let tbody = document.getElementById('tbody');
-
-            for (let i = this.arrayProdutos.length - 1; i >= 0; i--) {
-                if (this.arrayProdutos[i].id == id) {
-                    this.arrayProdutos.splice(i, 1);
-                    tbody.deleteRow(i);
-                }
-            };
-
-        };
+    deletar(indice) {
+        if (confirm(`Excluir o item com a Placa: ${this.arrayProdutos[indice].id}?`)) {
+            this.arrayProdutos.splice(indice, 1);
+            this.listaTabela();
+        }
     };
 };
 
@@ -178,13 +162,3 @@ document.getElementById('exportCSV').addEventListener('click', function () {
 });
 
 document.querySelector('*' && 'body').setAttribute("class", 'amd');
-
-// document.getElementById('verde-btn').addEventListener('click', function () {
-//     document.querySelector('*' && 'body').setAttribute("class", "verde");
-// });
-// document.getElementById('azul-btn').addEventListener('click', function () {
-//     document.querySelector('*' && 'body').setAttribute("class", "azul");
-// });
-// document.getElementById('amd-btn').addEventListener('click', function () {
-//     document.querySelector('*' && 'body').setAttribute("class", "amd");
-// });
