@@ -9,6 +9,12 @@ const referencia = document.getElementById('referencia');
 const descricao = document.getElementById('descricao');
 const localiza = document.getElementById('localiza');
 
+document.getElementById("limparBusca")?.addEventListener("click", () => {
+    document.getElementById("buscar").value = "";
+    produtos.listaTabela();
+});
+
+
 document.getElementById('codBarraPrimary').focus();
 document.getElementById('codBarraPrimary').onchange = function () {
     retorno();
