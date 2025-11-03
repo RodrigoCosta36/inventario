@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Rodrigo Costa" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="shortcut icon" href="./_img/profile.svg" type="image/x-icon">
+    <title>Login | Cadastro</title>
+</head>
+
+<body class="container">
+    <div class="header">
+        <h1>Login</h1><br><br><br>
+        <form id="form">
+            <p><input type="text" placeholder="User" id="user" autocomplete="off" required></p><br><br>
+            <p><input type="password" placeholder="Password" autocomplete="off" id="password" minlength="6" required>
+            <div id="icon" onclick="showHide()"></div>
+            </p><br><br>
+            <input type="submit" id="login" value="Login" onclick="entrar(); return false">
+        </form>
+    </div>
+
+    <script src="js/scriptLogin.js"></script>
+</body>
+
+</html>

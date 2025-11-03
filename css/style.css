@@ -1,0 +1,213 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: rgb(255, 255, 255);
+}
+
+button.verde {
+    border: 1.5px solid #000;
+    border-radius: 10em 0 0em 10em;
+}
+
+button.azul {
+    border: 1.5px solid #000;
+    border: 1.5px solid #000;
+}
+
+button.amd {
+    border: 1.5px solid #000;
+    border-radius: 0 10em 10em 0em;
+}
+
+.verde {
+    background: rgb(9, 96, 78);
+    transition: all 0.5s ease-in-out;
+    color: transparent;
+}
+
+.azul {
+    background: rgb(35, 120, 181);
+    transition: all 0.5s ease-in-out;
+    color: transparent;
+}
+
+.amd {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(130deg, rgba(2, 0, 36, 1) 0%, rgba(22, 9, 121, 1) 37%, rgba(0, 212, 255, 1) 100%);
+    transition: all 0.5s ease-in-out;
+    color: transparent;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.qr_qr {
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    width: 40%;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 35px;
+    color: rgb(0, 0, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.border_box {
+    margin: 0;
+    padding: 18px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+.barras {
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    width: 20%;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 42px;
+    color: rgb(0, 0, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#referencia,
+#descricao {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    align-items: center;
+    color: rgb(255, 255, 255);
+}
+
+.nomeQR,
+h2 {
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+span,
+#number {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    font-size: 1.1em;
+    padding: 8px;
+    margin: 1px;
+}
+
+.sub_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.barra {
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 42px;
+    color: rgb(0, 0, 0);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#contador {
+    padding: 0;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 5em;
+}
+
+.conteudo {
+    margin-top: 1em;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #fff;
+    width: 100%;
+}
+
+table th {
+    background-color: rgba(183, 0, 255, 0.689);
+    padding: 1.75px;
+}
+
+table td {
+    background-color: rgb(255, 255, 255);
+    padding: 1px 5px;
+    text-align: left;
+    color: #000;
+}
+
+table td img {
+    background-color: transparent;
+    width: 22px;
+}
+
+.center {
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+}
+
+th,
+td {
+    border: 1px solid #000;
+}
+
+#number {
+    outline: 0;
+    width: 5em;
+}
+
+.left {
+    height: 2.1em;
+}
+
+input {
+    outline: 0;
+    cursor: pointer;
+}
+
+img {
+    margin: 0 8px;
+}
+
+.usuarioLogout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+#nomeUser {
+    font-size: 12px;
+    background: rgb(255, 255, 255);
+    color: #000;
+    padding: 6px;
+    border-radius: 0 18px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.temas {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+/* #adiciona {
+    font: normal 16pt arial;
+    color: #000;
+} */

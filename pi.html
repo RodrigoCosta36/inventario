@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Rodrigo Costa" />
+    <title>Contagem</title>
+    <link rel="shortcut icon" href="_icon/counter.svg" type="image/png" />
+    <!-- Font Awesome icons (free version)-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
+        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Import AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="./css/pi.css" rel="stylesheet" />
+    <script src="/js/table2excel.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark" data-bs-theme="dark">
+        <li class="usuarioLogout">
+            <div id="nomeUser"></div>
+        </li>
+        <li class="usuarioLogout">
+            <button onclick="sair()" class="btn btn-light">Desconectar</button>
+        </li>
+    </nav>
+    <div class="container">
+        <div>
+            <p>
+            <h1>PROCESSO DE BIPAGEM P.I</h1>
+            <div class="usuarioLogout">
+                <div>
+
+                </div>
+            </div>
+            </p>
+            <section>
+
+                <div class="descripition border_box">
+                    <label class="nomeQR" for="codBarraPrimary">Patrimônio:</label><span><i
+                            class="bi bi-upc-scan"></i></span>
+                    <input class="barras" type="text" name="codBarraPrimary" id="codBarraPrimary" autocomplete="off"
+                        onchange="retorno()"><br><br>
+                    <div>
+                        <label class="nomeQR" for="referencia">Centro de Custo:</label>
+                        <span type="text" name="referencia" id="referencia"></span>
+                        <br><br>
+                        <label class="nomeQR" for="descricao">Descrição:</label>
+                        <span type="text" name="descricao" id="descricao"></span>
+                        <br><br>
+                        <label class="nomeQR" for="localiza">Localização:</label>
+                        <span type="text" name="localiza" id="localiza"></span>
+                    </div><br>
+                </div>
+                <br>
+                <div class="border_box sub_container">
+                    <div>
+                        <p id="contador"></p>
+                        <button id="produtos" class="btn btn-success" onclick="produtos.salvar()">Salvar</button>
+                        <button id="limpar" class="btn btn-danger">Limpar</button>
+                    </div>
+                </div>
+            </section>
+
+            <audio src="_sound/error.mp3" id="audio" controls hidden="none">
+                <source src="" type="audio/mp3">
+            </audio>
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <button data-js="export-table-btn" role="button" class="btn btn-info" id="exportCSV">Exportar CSV</button>
+        <table id="export">
+            <thead>
+                <th class="center">Placa</th>
+                <th class="center">CC</th>
+                <th class="center">QTD</th>
+                <th class="center">DESCRIÇÃO</th>
+                <th class="center">LOCALIZAÇÃO</th>
+                <th class="center">CONFERENTE</th>
+                <th class="center">AÇÕES</th>
+            </thead>
+            <tbody class="tbody" id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./js/pi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
