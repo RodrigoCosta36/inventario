@@ -21,14 +21,14 @@ nomeLogado.innerHTML = `Olá, ${usuarios}`
 
 if (localStorage.getItem('token') == null) {
     alert('Login Obrigatório.');
-    window.location.href = 'https://conferenciapa.netlify.app/';
+    window.location.href = 'https://inventariodescarte.netlify.app/';
 }
 
 function sair() {
     localStorage.removeItem('token');
     localStorage.removeItem('usuarioLogado');
     localStorage.removeItem('usuarios');
-    window.location.href = 'https://conferenciapa.netlify.app/';
+    window.location.href = 'https://inventariodescarte.netlify.app/';
 };
 
 limpar.addEventListener('click', function () {

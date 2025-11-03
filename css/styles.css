@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(48, 150, 233);
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1,
+p,
+section,
+form,
+input {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+form input {
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    width: 18em;
+    height: 28px;
+    border: 0;
+    outline: none;
+    border-radius: 8px;
+    padding: 0 10px;
+    box-shadow: 0 2px 8px 0 #000;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.527);
+    width: 22em;
+    height: 30em;
+}
+
+#icon {
+    display: flex;
+    position: relative;
+    left: 220px;
+    bottom: 26px;
+    background: url("/_img/eyesHide.png");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+
+}
+
+#icon.hide {
+    background: url("/_img/eyesShow.png");
+    background-size: cover;
+}
+
+#login {
+    transition: 0.5s;
+}
+
+#login:hover {
+    background: rgb(170, 232, 207);
+    transition: 0.2s;
+}
+
+input {
+    font-size: 14px;
+}
