@@ -69,9 +69,10 @@ function enter() {
 class Produto {
 
     constructor() {
-        this.arrayProdutos = [];
+        this.arrayProdutos = JSON.parse(localStorage.getItem("tabela")) || [];
         this.editando = false;
         this.indexEditar = null;
+        this.listaTabela();
     }
 
     salvar() {
@@ -86,6 +87,8 @@ class Produto {
             } else {
                 this.arrayProdutos.push(produtos);
             }
+
+            this.salvarLocal();
         };
 
         this.listaTabela();
@@ -97,24 +100,32 @@ class Produto {
         let tbody = document.getElementById('tbody');
         tbody.innerHTML = '';
 
-        for (let i = this.arrayProdutos.length - 1; i >= 0; i--) {
+        let filtro = document.getElementById("buscar")?.value?.toLowerCase() || "";
 
+        let filtrados = this.arrayProdutos.filter(item =>
+            item.id.toLowerCase().includes(filtro) ||
+            item.referencia.toLowerCase().includes(filtro) ||
+            item.descricao.toLowerCase().includes(filtro) ||
+            item.localiza.toLowerCase().includes(filtro)
+        );
+
+        filtrados.forEach((item, index) => {
             let tr = tbody.insertRow();
 
-            tr.insertCell().innerHTML = this.arrayProdutos[i].id;
-            tr.insertCell().innerHTML = this.arrayProdutos[i].referencia;
+            tr.insertCell().innerHTML = item.id;
+            tr.insertCell().innerHTML = item.referencia;
             tr.insertCell().innerHTML = 1;
-            tr.insertCell().innerHTML = this.arrayProdutos[i].descricao;
-            tr.insertCell().innerHTML = this.arrayProdutos[i].localiza;
+            tr.insertCell().innerHTML = item.descricao;
+            tr.insertCell().innerHTML = item.localiza;
             tr.insertCell().innerHTML = `${usuarios}`;
 
             let td_acoes = tr.insertCell();
             td_acoes.innerHTML = `
-                <button onclick="produtos.editar(${i})">✏️</button>
-                <button onclick="produtos.deletar(${i})">🗑️</button>
+                <button onclick="produtos.editar(${index})">✏️</button>
+                <button onclick="produtos.deletar(${index})">🗑️</button>
             `;
             td_acoes.classList.add('center');
-        }
+        })
     };
 
     editar(indice) {
@@ -140,7 +151,7 @@ class Produto {
 
     validaCampos(produtos) {
         if (produtos.referencia == '' && produtos.descricao == '') {
-            alert('Campo não pode ser vazio \n');
+            alert('Campo não pode ser vazio');
             return false;
         }
         return true;
@@ -149,9 +160,14 @@ class Produto {
     deletar(indice) {
         if (confirm(`Excluir o item com a Placa: ${this.arrayProdutos[indice].id}?`)) {
             this.arrayProdutos.splice(indice, 1);
+            this.salvarLocal();
             this.listaTabela();
         }
     };
+
+    salvarLocal() {
+        localStorage.setItem("tabela", JSON.stringify(this.arrayProdutos));
+    }
 };
 
 var produtos = new Produto();
@@ -162,3 +178,8 @@ document.getElementById('exportCSV').addEventListener('click', function () {
 });
 
 document.querySelector('*' && 'body').setAttribute("class", 'amd');
+
+// Filtro digitando na hora
+document.getElementById("buscar")?.addEventListener("keyup", () => {
+    produtos.listaTabela();
+});
