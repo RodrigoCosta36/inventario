@@ -14,6 +14,14 @@ document.getElementById("limparBusca")?.addEventListener("click", () => {
     produtos.listaTabela();
 });
 
+document.getElementById("limparTabela")?.addEventListener("click", () => {
+    if(confirm("Tem certeza que deseja limpar toda a tabela? Esta ação não pode ser desfeita!")) {
+        produtos.arrayProdutos = []; // esvazia o array
+        produtos.salvarLocal(); // atualiza o localStorage
+        produtos.listaTabela(); // atualiza a tabela visual
+        alert("Tabela limpa com sucesso!");
+    }
+});
 
 document.getElementById('codBarraPrimary').focus();
 document.getElementById('codBarraPrimary').onchange = function () {
