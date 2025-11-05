@@ -16,9 +16,9 @@ document.getElementById("limparBusca")?.addEventListener("click", () => {
 
 document.getElementById("limparTabela")?.addEventListener("click", () => {
     if(confirm("Tem certeza que deseja limpar toda a tabela? Esta ação não pode ser desfeita!")) {
-        produtos.arrayProdutos = []; // esvazia o array
-        produtos.salvarLocal(); // atualiza o localStorage
-        produtos.listaTabela(); // atualiza a tabela visual
+        produtos.arrayProdutos = [];
+        produtos.salvarLocal();
+        produtos.listaTabela();
         alert("Tabela limpa com sucesso!");
     }
 });
@@ -193,7 +193,6 @@ document.getElementById('exportCSV').addEventListener('click', function () {
 
 document.querySelector('*' && 'body').setAttribute("class", 'amd');
 
-// Filtro digitando na hora
 document.getElementById("buscar")?.addEventListener("keyup", () => {
     produtos.listaTabela();
 });
